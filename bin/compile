@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+# bin/compile <build-dir> <cache-dir>
+
+set -e
+
+BUILD=$1
+CACHE=$2
+
+BIN=$(cd $(dirname $0); pwd)
+CHICKEN=$(cd "$BIN/../chicken"; pwd)
+
+PATH=$CACHE/bin:$PATH
+CHICKEN_PREFIX=$CACHE
+CHICKEN_REPOSITORY=$CACHE/lib/chicken/6
+LD_LIBRARY_PATH=$CACHE/lib:$CACHE/lib/chicken/6
+C_INCLUDE_PATH=$CACHE/include:$CACHE/include/chicken
+
+export PATH
+export CHICKEN_PREFIX
+export CHICKEN_REPOSITORY
+export LD_LIBRARY_PATH
+export C_INCLUDE_PATH
+
+[ -f $CACHE/bin/chicken ] || {
+  echo "-----> Installing Chicken"
+  mkdir -p $CACHE
+  rm -rf $CACHE/*
+  cp -R $CHICKEN/* $CACHE/
+}
+
+echo "-----> Installing eggs"
+pushd $BUILD
+[ -f *.meta ] && {
+  name=$(basename $(ls *.meta | head -n1) .meta)
+  [ -f $name.setup ] || touch $name.setup
+  chicken-install
+}
+popd
+
+echo "-----> Copying build onto slug"
+cp -R $CACHE/* $BUILD/

@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# bin/release <build-dir>
+
+cat <<EOF
+---
+config_vars:
+  PATH: bin:/usr/local/bin:/usr/bin:/bin
+  C_INCLUDE_PATH: include:include/chicken
+  LD_LIBRARY_PATH: lib:lib/chicken/6
+  CHICKEN_REPOSITORY: lib/chicken/6
+  CHICKEN_PREFIX: .
+default_process_types:
+  web: csi -s run.scm
+EOF
