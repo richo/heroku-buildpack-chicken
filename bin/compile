@@ -38,4 +38,5 @@ pushd $BUILD
 popd
 
 echo "-----> Copying build onto slug"
-cp -R $CACHE/* $BUILD/
+mkdir -p $BUILD/vendor
+cp -R $CACHE/* $BUILD/vendor/

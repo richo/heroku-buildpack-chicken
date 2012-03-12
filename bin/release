@@ -4,11 +4,11 @@
 cat <<EOF
 ---
 config_vars:
-  PATH: bin:/usr/local/bin:/usr/bin:/bin
-  C_INCLUDE_PATH: include:include/chicken
-  LD_LIBRARY_PATH: lib:lib/chicken/6
-  CHICKEN_REPOSITORY: lib/chicken/6
-  CHICKEN_PREFIX: .
+  PATH: vendor/bin:/usr/local/bin:/usr/bin:/bin
+  C_INCLUDE_PATH: vendor/include:vendor/include/chicken
+  LD_LIBRARY_PATH: vendor/lib:vendor/lib/chicken/6
+  CHICKEN_REPOSITORY: vendor/lib/chicken/6
+  CHICKEN_PREFIX: vendor
 default_process_types:
   web: csi -s run.scm
 EOF
