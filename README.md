@@ -51,7 +51,7 @@ If a `deploy.meta` file is present, dependencies listed therein will be
 installed onto your slug during the deploy. This file should follow Chicken's
 [metafile][] format.
 
-If a `deploy.setup` ifile s present, it will be run by `chicken-install` during
+If a `deploy.setup` file is present, it will be run by `chicken-install` during
 the deploy. This file should follow Chicken's [setupfile][] format.
 
 The vendored Chicken and installed eggs are cached between builds. If a
