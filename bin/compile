@@ -6,8 +6,21 @@ set -e
 BUILD=$1
 CACHE=$2
 
-BIN=$(cd $(dirname $0); pwd)
-CHICKEN=$(cd "$BIN/../chicken"; pwd)
+VERSION=4.7.0
+NAME=heroku-buildpack-chicken
+S3_BUCKET=$NAME
+
+quietly() { $* > /dev/null; }
+indent()  { $* | sed -u 's/^/       /'; }
+
+[ -f $CACHE/bin/chicken ] || {
+  echo "-----> Installing Chicken"
+  mkdir -p $CACHE
+  rm -rf $CACHE/*
+  quietly pushd $CACHE
+  curl -Ss $S3_BUCKET.s3.amazonaws.com/$NAME-$VERSION.tar.gz | tar zx
+  quietly popd
+}
 
 PATH=$CACHE/bin:$PATH
 CHICKEN_PREFIX=$CACHE
@@ -21,22 +34,15 @@ export CHICKEN_REPOSITORY
 export LD_LIBRARY_PATH
 export C_INCLUDE_PATH
 
-[ -f $CACHE/bin/chicken ] || {
-  echo "-----> Installing Chicken"
-  mkdir -p $CACHE
-  rm -rf $CACHE/*
-  cp -R $CHICKEN/* $CACHE/
-}
-
-echo "-----> Installing eggs"
-pushd $BUILD
-[ -f *.meta ] && {
+[ -f $BUILD/*.meta ] && {
+  quietly pushd $BUILD
+  echo "-----> Installing eggs"
   name=$(basename $(ls *.meta | head -n1) .meta)
   [ -f $name.setup ] || touch $name.setup
-  chicken-install
+  indent chicken-install
+  quietly popd
 }
-popd
 
-echo "-----> Copying build onto slug"
+echo "-----> Copying Chicken onto slug"
 mkdir -p $BUILD/vendor
 cp -R $CACHE/* $BUILD/vendor/
