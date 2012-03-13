@@ -54,9 +54,8 @@ installed onto your slug during the deploy. This file should follow Chicken's
 If a `deploy.setup` file is present, it will be run by `chicken-install` during
 the deploy. This file should follow Chicken's [setupfile][] format.
 
-The vendored Chicken and installed eggs are cached between builds. If a
-`.setup` file is present, however, your application will *always* be
-recompiled.
+The vendored Chicken and installed eggs are cached between deploys. If a
+`deploy.setup` file is present, however, it is *always* rerun.
 
 [buildpack]: https://devcenter.heroku.com/articles/buildpacks
 [chicken]: http://call-cc.org/
