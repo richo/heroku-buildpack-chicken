@@ -11,7 +11,6 @@ NAME=heroku-buildpack-chicken
 S3_BUCKET=$NAME
 
 quietly() { $* > /dev/null; }
-indent()  { $* | sed -u 's/^/       /'; }
 
 [ -f $CACHE/bin/chicken ] || {
   echo "-----> Installing Chicken"
@@ -39,7 +38,7 @@ export C_INCLUDE_PATH
   echo "-----> Installing eggs"
   name=$(basename $(ls *.meta | head -n1) .meta)
   [ -f $name.setup ] || touch $name.setup
-  indent chicken-install
+  chicken-install
   quietly popd
 }
 
