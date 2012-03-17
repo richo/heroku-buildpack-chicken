@@ -3,8 +3,8 @@
 This is a [Buildpack][] for deploying [Chicken Scheme][chicken] apps
 on Heroku's [Cedar][] stack.
 
-It comes bundled with Chicken [4.7.0][] and uses the [egg][] packaging
-infrastructure to manage dependencies.
+It comes with Chicken [4.7.0][] and uses the [egg][] packaging infrastructure
+to manage dependencies.
 
 ## Usage
 
@@ -43,9 +43,9 @@ infrastructure to manage dependencies.
     -----> Launching... done, v1
            http://deep-journey-2786.herokuapp.com deployed to Heroku
 
-To be recognized as a Chicken application, your project must have a `run.scm`
-file in its root. If no [`Procfile`][procfile] is included in the app, this
-script will be run as the default `web` process.
+To be recognized as a Chicken application, your project must have a `run.scm`,
+`deploy.meta` or `deploy.setup` file in its root. If no [`Procfile`][procfile]
+is included in the app, `run.scm` will be run as the default `web` process.
 
 If a `deploy.meta` file is present, dependencies listed therein will be
 installed onto your slug during the deploy. This file should follow Chicken's
