@@ -35,12 +35,15 @@ export C_INCLUDE_PATH
 
 [ -f $BUILD/*.meta ] && {
   quietly pushd $BUILD
-  echo "-----> Installing eggs"
   name=$(basename $(ls *.meta | head -n1) .meta)
   [ -f $name.setup ] || touch $name.setup
-  chicken-install
   quietly popd
 }
+
+echo "-----> Installing eggs"
+quietly pushd $BUILD
+chicken-install
+quietly popd
 
 echo "-----> Copying Chicken onto slug"
 mkdir -p $BUILD/vendor
