@@ -57,6 +57,15 @@ the deploy. This file should follow Chicken's [setupfile][] format.
 The vendored Chicken and installed eggs are cached between deploys. If a
 `deploy.setup` file is present, however, it is *always* rerun.
 
+A specific version of Chicken to install can be defined in the metafile:
+
+    $ cat deploy.meta
+    ((description "An example Chicken app for Heroku")
+     (depends awful)
+     (chicken 4.7.0))
+
+Currently, Chicken [4.7.0][] and [4.7.0.5-st][st] are available in this way.
+
 [buildpack]: https://devcenter.heroku.com/articles/buildpacks
 [chicken]: http://call-cc.org/
 [cedar]: https://devcenter.heroku.com/articles/cedar
@@ -65,3 +74,4 @@ The vendored Chicken and installed eggs are cached between deploys. If a
 [procfile]: http://devcenter.heroku.com/articles/procfile
 [metafile]: http://wiki.call-cc.org/eggs%20tutorial#the-meta-file
 [setupfile]: http://wiki.call-cc.org/eggs%20tutorial#the-setup-file
+[st]: http://wiki.call-cc.org/stability
