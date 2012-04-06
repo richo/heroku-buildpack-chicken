@@ -12,14 +12,16 @@ S3_BUCKET=$NAME
 
 quietly() { $* > /dev/null; }
 
-[ -f $CACHE/bin/chicken ] || {
-  echo "-----> Installing Chicken"
+install_chicken() {
+  echo "-----> Installing Chicken $1"
   mkdir -p $CACHE
   rm -rf $CACHE/*
   quietly pushd $CACHE
-  curl -Ss $S3_BUCKET.s3.amazonaws.com/$NAME-$VERSION.tar.gz | tar zx
+  curl -Ss $S3_BUCKET.s3.amazonaws.com/$NAME-$1.tar.gz | tar zx
   quietly popd
 }
+
+[ -f $CACHE/bin/chicken ] || install_chicken $VERSION
 
 PATH=$CACHE/bin:$PATH
 CHICKEN_PREFIX=$CACHE
@@ -36,6 +38,8 @@ export C_INCLUDE_PATH
 [ -f $BUILD/*.meta ] && {
   quietly pushd $BUILD
   name=$(basename $(ls *.meta | head -n1) .meta)
+  version=$(csi -p "(cond ((assq 'chicken (read)) => cadr) (else \"\"))" < $name.meta)
+  [ -z $version ] || [ "$(csi -release)" == "$version" ] || install_chicken $version
   [ -f $name.setup ] || touch $name.setup
   quietly popd
 }
