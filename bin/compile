@@ -42,7 +42,7 @@ export C_INCLUDE_PATH
 
 echo "-----> Installing eggs"
 quietly pushd $BUILD
-chicken-install
+[ -f *.setup ] && chicken-install
 quietly popd
 
 echo "-----> Copying Chicken onto slug"
