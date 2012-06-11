@@ -20,7 +20,7 @@ to manage dependencies.
     $ cat run.scm
     (use awful)
     (define-page (main-page-path)
-      (lambda () "Hello World!")
+      (lambda () "Hello World!"))
 
     $ cat Procfile
     web: awful --port=$PORT run.scm
