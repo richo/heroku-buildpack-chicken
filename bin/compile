@@ -6,7 +6,7 @@ set -e
 BUILD=$1
 CACHE=$2
 
-VERSION=4.7.0
+VERSION=4.8.0
 NAME=heroku-buildpack-chicken
 S3_BUCKET=$NAME
 

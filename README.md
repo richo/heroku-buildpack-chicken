@@ -3,8 +3,8 @@
 This is a [Buildpack][] for deploying [Chicken Scheme][chicken] apps
 on Heroku's [Cedar][] stack.
 
-It comes with Chicken [4.7.0][] and uses the [egg][] packaging infrastructure
-to manage dependencies.
+It comes with Chicken [4.8.0][releases] and uses the [egg][] packaging
+infrastructure to manage dependencies.
 
 ## Usage
 
@@ -62,14 +62,15 @@ A specific version of Chicken to install can be defined in the metafile:
     $ cat deploy.meta
     ((description "An example Chicken app for Heroku")
      (depends awful)
-     (chicken 4.7.0))
+     (chicken 4.8.0))
 
-Currently, Chicken [4.7.0][] and [4.7.0.5-st][st] are available in this way.
+Currently, Chicken [4.8.0][releases], [4.7.0][releases] and [4.7.0.5-st][st]
+are available in this way.
 
 [buildpack]: https://devcenter.heroku.com/articles/buildpacks
 [chicken]: http://call-cc.org/
 [cedar]: https://devcenter.heroku.com/articles/cedar
-[4.7.0]: http://code.call-cc.org/releases
+[releases]: http://code.call-cc.org/releases
 [egg]: http://wiki.call-cc.org/eggs
 [procfile]: http://devcenter.heroku.com/articles/procfile
 [metafile]: http://wiki.call-cc.org/eggs%20tutorial#the-meta-file
