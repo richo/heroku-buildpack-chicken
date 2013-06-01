@@ -23,7 +23,7 @@ install_chicken() {
 
 configure_environment() {
   mkdir -p $BUILD/.profile.d
-  cat <<EOF > $BUILD/.profile.d/config.sh
+  cat <<EOF > $BUILD/.profile.d/default.sh
 #!/usr/bin/env bash
 export PATH=/app/vendor/bin:/usr/local/bin:/usr/bin:/bin
 export C_INCLUDE_PATH=/app/vendor/include:/app/vendor/include/chicken
@@ -31,7 +31,7 @@ export LD_LIBRARY_PATH=/app/vendor/lib:/app/vendor/lib/chicken/6
 export CHICKEN_REPOSITORY=/app/vendor/lib/chicken/6
 export CHICKEN_PREFIX=/app/vendor
 EOF
-  chmod +x $BUILD/.profile.d/config.sh
+  chmod +x $BUILD/.profile.d/default.sh
 }
 
 [ -f $CACHE/bin/chicken ] || install_chicken $VERSION
@@ -64,4 +64,6 @@ quietly popd
 
 echo "-----> Copying CHICKEN onto slug"
 cp -R $CACHE $BUILD/vendor
+
+echo "-----> Configuring default environment"
 configure_environment
