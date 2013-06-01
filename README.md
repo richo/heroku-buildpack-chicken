@@ -64,7 +64,7 @@ A specific version of CHICKEN to install can be defined in the metafile:
      (depends awful)
      (chicken 4.8.0))
 
-Currently, CHICKEN [4.8.0][releases], [4.7.0][releases] and [4.7.0.5-st][st]
+Currently, CHICKEN 4.7.0, 4.7.0.6, 4.8.0, 4.8.0.1, 4.8.0.2, and 4.8.0.3
 are available in this way.
 
 [buildpack]: https://devcenter.heroku.com/articles/buildpacks
