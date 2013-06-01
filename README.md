@@ -1,9 +1,9 @@
-# Heroku Buildpack: Chicken Scheme
+# Heroku Buildpack: CHICKEN Scheme
 
-This is a [Buildpack][] for deploying [Chicken Scheme][chicken] apps
+This is a [Buildpack][] for deploying [CHICKEN Scheme][chicken] apps
 on Heroku's [Cedar][] stack.
 
-It comes with Chicken [4.8.0][releases] and uses the [egg][] packaging
+It comes with CHICKEN [4.8.0][releases] and uses the [egg][] packaging
 infrastructure to manage dependencies.
 
 ## Usage
@@ -14,7 +14,7 @@ infrastructure to manage dependencies.
     run.scm
 
     $ cat deploy.meta
-    ((description "An example Chicken app for Heroku")
+    ((description "An example CHICKEN app for Heroku")
      (depends awful))
 
     $ cat run.scm
@@ -32,39 +32,39 @@ infrastructure to manage dependencies.
     ...
     -----> Heroku receiving push
     -----> Fetching custom buildpack... done
-    -----> Chicken app detected
-    -----> Installing Chicken
+    -----> CHICKEN app detected
+    -----> Installing CHICKEN
     -----> Installing eggs
     ...
-    -----> Copying build onto slug
+    -----> Copying CHICKEN onto slug
     -----> Discovering process types
            Procfile declares types -> web
     -----> Compiled slug size is 5.4MB
     -----> Launching... done, v1
            http://deep-journey-2786.herokuapp.com deployed to Heroku
 
-To be recognized as a Chicken application, your project must have a `run.scm`,
+To be recognized as a CHICKEN application, your project must have a `run.scm`,
 `deploy.meta` or `deploy.setup` file in its root. If no [`Procfile`][procfile]
 is included in the app, `run.scm` will be run as the default `web` process.
 
 If a `deploy.meta` file is present, dependencies listed therein will be
-installed onto your slug during the deploy. This file should follow Chicken's
-[metafile][] format.
+installed onto your slug during the deploy. This file should follow
+CHICKEN's [metafile][] format.
 
 If a `deploy.setup` file is present, it will be run by `chicken-install` during
-the deploy. This file should follow Chicken's [setupfile][] format.
+the deploy. This file should follow CHICKEN's [setupfile][] format.
 
-The vendored Chicken and installed eggs are cached between deploys. If a
+The vendored CHICKEN and installed eggs are cached between deploys. If a
 `deploy.setup` file is present, however, it is *always* rerun.
 
-A specific version of Chicken to install can be defined in the metafile:
+A specific version of CHICKEN to install can be defined in the metafile:
 
     $ cat deploy.meta
-    ((description "An example Chicken app for Heroku")
+    ((description "An example CHICKEN app for Heroku")
      (depends awful)
      (chicken 4.8.0))
 
-Currently, Chicken [4.8.0][releases], [4.7.0][releases] and [4.7.0.5-st][st]
+Currently, CHICKEN [4.8.0][releases], [4.7.0][releases] and [4.7.0.5-st][st]
 are available in this way.
 
 [buildpack]: https://devcenter.heroku.com/articles/buildpacks

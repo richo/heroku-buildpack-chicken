@@ -13,7 +13,7 @@ S3_BUCKET=$NAME
 quietly() { $* > /dev/null; }
 
 install_chicken() {
-  echo "-----> Installing Chicken $1"
+  echo "-----> Installing CHICKEN $1"
   mkdir -p $CACHE
   rm -rf $CACHE/*
   quietly pushd $CACHE
@@ -62,6 +62,6 @@ quietly pushd $BUILD
 [ -f *.setup ] && chicken-install
 quietly popd
 
-echo "-----> Copying Chicken onto slug"
+echo "-----> Copying CHICKEN onto slug"
 cp -R $CACHE $BUILD/vendor
 configure_environment
