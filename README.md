@@ -25,7 +25,7 @@ infrastructure to manage dependencies.
     $ cat Procfile
     web: awful --port=$PORT run.scm
 
-    $ heroku create --stack cedar --buildpack git://github.com/evhan/heroku-buildpack-chicken.git
+    $ heroku create --buildpack git://github.com/evhan/heroku-buildpack-chicken.git
     ...
 
     $ git push heroku master
